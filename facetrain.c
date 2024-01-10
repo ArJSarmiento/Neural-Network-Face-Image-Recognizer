@@ -131,7 +131,7 @@ char *netname;
 	make a net with:
 	  imgsize inputs, 4 hiden units, and 1 output unit
           */
-      net = bpnn_create(imgsize, 4, 1);
+      net = bpnn_create(imgsize, 6, 4);
     } else {
       printf("Need some images to train on, use -t\n");
       return 0;
@@ -258,37 +258,22 @@ evaluate_performance(net, err)
 BPNN *net;
 double *err;
 {
-  double delta;
+  int correct = 1;
+  double delta, delta_squared, sum = 0.0;
 
-  delta = net->target[1] - net->output_units[1];
+  for (int i = 1; i <= net->output_n; i++) {
+    delta = net->target[i] - net->output_units[i];
+    delta_squared = delta * delta;
+    sum += delta_squared;
 
-  *err = (0.5 * delta * delta);
-
-  /*** If the target unit is on... ***/
-  if (net->target[1] > 0.5) {
-
-    /*** If the output unit is on, then we correctly recognized me! ***/
-    if (net->output_units[1] > 0.5) {
-      return (1);
-
-    /*** otherwise, we didn't think it was me... ***/
-    } else {
-      return (0);
-    }
-
-  /*** Else, the target unit is off... ***/
-  } else {
-
-    /*** If the output unit is on, then we mistakenly thought it was me ***/
-    if (net->output_units[1] > 0.5) {
-      return (0);
-
-    /*** else, we correctly realized that it wasn't me ***/
-    } else {
-      return (1);
+    if ((net->target[i] > 0.5 && net->output_units[i] <= 0.5) || 
+        (net->target[i] <= 0.5 && net->output_units[i] > 0.5)) {
+      correct = 0;
     }
   }
 
+  *err = (0.5 * sum) / (double) net->output_n;
+  return correct;
 }
 
 
