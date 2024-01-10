@@ -1,0 +1,25 @@
+# 5
+make facetrain
+./facetrain -n karyadi.net -t straightrnd_train.list -1 straightrnd_test1.list -2 straightrnd_test2.list -e 75
+
+# 7
+make facetrain
+./facetrain -n cheyer.net -t all_train.list -1 all_test1.list -2 all_test2.list -e 75
+
+# 9
+make facetrain
+./facetrain -n eye.net -t straighteven_train.list -1 straighteven_test1.list -2 straighteven_test2.list -e 100
+
+# 11
+make facetrain
+./facetrain -n eye.net -T -1 straighteven_test1.list -2 straighteven_test2.list
+
+# 13
+make facetrain
+./facetrain -n pose.net -t all_train.list -1 all_test1.list -2 all_test2.list -e 100
+
+# 15
+make facetrain_init0
+./facetrain_init0 -n pose.net -t all_train.list -1 all_test1.list -2 all_test2.list -e 100
+make hidtopgm
+./hidtopgm pose.net image-filename.pgm 32 30 1
