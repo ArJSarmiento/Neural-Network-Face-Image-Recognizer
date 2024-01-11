@@ -293,7 +293,8 @@ double *err;
 
 
 
-void printusage(char *prog)
+printusage(prog)
+char *prog;
 {
   printf("USAGE: %s\n", prog);
   printf("       -n <network file>\n");

@@ -1,21 +1,21 @@
 # 5
-make facetrain
+make
 ./facetrain -n karyadi.net -t straightrnd_train.list -1 straightrnd_test1.list -2 straightrnd_test2.list -e 75
 
 # 7
-make facetrain
+make 
 ./facetrain -n cheyer.net -t all_train.list -1 all_test1.list -2 all_test2.list -e 75
 
 # 9
-make facetrain
+make 
 ./facetrain -n eye.net -t straighteven_train.list -1 straighteven_test1.list -2 straighteven_test2.list -e 100
 
 # 11
-make facetrain
+make 
 ./facetrain -n eye.net -T -1 straighteven_test1.list -2 straighteven_test2.list
 
 # 13
-make facetrain
+make 
 ./facetrain -n pose.net -t all_train.list -1 all_test1.list -2 all_test2.list -e 100
 
 # 15
