@@ -36,10 +36,10 @@ BPNN *net;
   sscanf(NAME(img), "%[^_]_%[^_]_%[^_]_%[^_]_%d.%[^_]",
     userid, head, expression, eyes, &scale, photo);
 
-  if (!strcmp(userid, "sunglasses")) {
+  if (!strcmp(eyes, "sunglasses")) {
     net->target[1] = TARGET_HIGH;  
     net->target[2] = TARGET_LOW;  
-  } else if (!strcmp(userid, "open")){
+  } else if (!strcmp(eyes, "open")){
     net->target[1] = TARGET_LOW;  
     net->target[2] = TARGET_HIGH;  
   }
